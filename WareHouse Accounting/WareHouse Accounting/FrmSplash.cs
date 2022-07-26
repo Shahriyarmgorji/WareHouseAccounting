@@ -10,16 +10,21 @@ using System.Windows.Forms;
 
 namespace WareHouse_Accounting
 {
-    public partial class FrmMain : Form
+    public partial class FrmSplash : Form
     {
-        public FrmMain()
+        public FrmSplash()
         {
             InitializeComponent();
         }
 
-        private void FrmMain_Load(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
-            new FrmSplash().ShowDialog();
+            progressBar1.Value += 10;
+            if (progressBar1.Value==100)
+            {
+                timer.Stop();
+                this.Close();
+            }
         }
     }
 }
