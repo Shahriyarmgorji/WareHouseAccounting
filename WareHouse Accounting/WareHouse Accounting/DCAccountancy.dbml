@@ -1,1 +1,63 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Class="DCAccountancyDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WareHouseAccounting" Class="DCAccountancyDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=WareHouseAccounting;Integrated Security=True" SettingsObjectName="WareHouse_Accounting.Properties.Settings" SettingsPropertyName="WareHouseAccountingConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Settings" Member="Settings">
+    <Type Name="Setting" Id="ID1" Modifier="Sealed">
+      <Column Name="Setiing_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="AddressOfInvoices" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="WarehouseRemittanceAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ContactNumberOfInvoices" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="WarehouseRemittanceContactNumber" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SMSPanelUserName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SMSPanelPassword" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SMSRecipientNumber" Type="System.String" DbType="NVarChar(11)" CanBeNull="true" />
+      <Column Name="SMSSender" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="WarningCameFrom" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WarningCameTo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SendSMSForTransactions" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SendSMSForInvoices" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LastEditDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.FiLLSettings" Method="FiLLSettings">
+    <ElementType IdRef="ID1" />
+  </Function>
+  <Function Name="dbo.InsertSettings" Method="InsertSettings">
+    <Parameter Name="CompanyName" Parameter="companyName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="AddressOfInvoices" Parameter="addressOfInvoices" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="WarehouseRemittanceAddress" Parameter="warehouseRemittanceAddress" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="ContactNumberOfInvoices" Parameter="contactNumberOfInvoices" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="WarehouseRemittanceContactNumber" Parameter="warehouseRemittanceContactNumber" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="SMSPanelUserName" Parameter="sMSPanelUserName" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="SMSPanelPassword" Parameter="sMSPanelPassword" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="SMSRecipientNumber" Parameter="sMSRecipientNumber" Type="System.String" DbType="NVarChar(11)" />
+    <Parameter Name="SMSSender" Parameter="sMSSender" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="WarningCameFrom" Parameter="warningCameFrom" Type="System.Int32" DbType="Int" />
+    <Parameter Name="WarningCameTo" Parameter="warningCameTo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SendSMSForTransactions" Parameter="sendSMSForTransactions" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="SendSMSForInvoices" Parameter="sendSMSForInvoices" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="LastEditDateTime" Parameter="lastEditDateTime" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UpdateSettings" Method="UpdateSettings">
+    <Parameter Name="CompanyName" Parameter="companyName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="AddressOfInvoices" Parameter="addressOfInvoices" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="WarehouseRemittanceAddress" Parameter="warehouseRemittanceAddress" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="ContactNumberOfInvoices" Parameter="contactNumberOfInvoices" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="WarehouseRemittanceContactNumber" Parameter="warehouseRemittanceContactNumber" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="SMSPanelUserName" Parameter="sMSPanelUserName" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="SMSPanelPassword" Parameter="sMSPanelPassword" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="SMSRecipientNumber" Parameter="sMSRecipientNumber" Type="System.String" DbType="NVarChar(11)" />
+    <Parameter Name="SMSSender" Parameter="sMSSender" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="WarningCameFrom" Parameter="warningCameFrom" Type="System.Int32" DbType="Int" />
+    <Parameter Name="WarningCameTo" Parameter="warningCameTo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SendSMSForTransactions" Parameter="sendSMSForTransactions" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="SendSMSForInvoices" Parameter="sendSMSForInvoices" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="LastEditDateTime" Parameter="lastEditDateTime" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ExistSettings" Method="ExistSettings">
+    <Parameter Name="Exist" Parameter="exist" Type="System.Boolean" DbType="Bit" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

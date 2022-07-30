@@ -19,8 +19,8 @@ namespace WareHouse_Accounting
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            progressBar1.Value += 10;
-            if (progressBar1.Value==100)
+            progressBarX1.Value += 1;
+            if (progressBarX1.Value==100)
             {
                 timer.Stop();
                 this.Close();

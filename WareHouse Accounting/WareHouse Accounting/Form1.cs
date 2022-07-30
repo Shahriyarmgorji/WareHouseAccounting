@@ -19,7 +19,12 @@ namespace WareHouse_Accounting
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            new FrmSplash().ShowDialog();
+            //new FrmSplash().ShowDialog();
+        }
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            new FrmSetting().ShowDialog();
         }
     }
 }
