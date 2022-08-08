@@ -19,6 +19,19 @@
       <Column Name="LastEditDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.Roles" Member="Roles">
+    <Type Name="Role" Id="ID2" Modifier="Sealed">
+      <Column Name="Role_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DepotPermission" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BankPermission" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PersonPermission" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FactorPermission" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SettingPermission" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UserPermission" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LastEditDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.FiLLSettings" Method="FiLLSettings">
     <ElementType IdRef="ID1" />
   </Function>
@@ -58,6 +71,44 @@
   </Function>
   <Function Name="dbo.ExistSettings" Method="ExistSettings">
     <Parameter Name="Exist" Parameter="exist" Type="System.Boolean" DbType="Bit" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteRoles" Method="DeleteRoles">
+    <Parameter Name="Role_Id" Parameter="role_Id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ExistRoles" Method="ExistRoles">
+    <Parameter Name="Exist" Parameter="exist" Type="System.Boolean" DbType="Bit" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.FillRolesByRoleID" Method="FillRolesByRoleID">
+    <Parameter Name="Role_Id" Parameter="role_Id" Type="System.Int32" DbType="Int" />
+    <ElementType IdRef="ID2" />
+  </Function>
+  <Function Name="dbo.InsertRoles" Method="InsertRoles">
+    <Parameter Name="RoleName" Parameter="roleName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="DepotPermission" Parameter="depotPermission" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="BankPermission" Parameter="bankPermission" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="PersonPermission" Parameter="personPermission" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="FactorPermission" Parameter="factorPermission" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="SettingPermission" Parameter="settingPermission" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="UserPermission" Parameter="userPermission" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="LastEditDateTime" Parameter="lastEditDateTime" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.FillRoles" Method="FillRoles">
+    <ElementType IdRef="ID2" />
+  </Function>
+  <Function Name="dbo.UpdateRoles" Method="UpdateRoles">
+    <Parameter Name="RolesId" Parameter="rolesId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="RoleName" Parameter="roleName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="DepotPermission" Parameter="depotPermission" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="BankPermission" Parameter="bankPermission" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="PersonPermission" Parameter="personPermission" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="FactorPermission" Parameter="factorPermission" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="SettingPermission" Parameter="settingPermission" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="UserPermission" Parameter="userPermission" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="LastEditDateTime" Parameter="lastEditDateTime" Type="System.DateTime" DbType="DateTime" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

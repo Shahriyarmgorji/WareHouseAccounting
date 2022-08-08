@@ -33,6 +33,9 @@ namespace WareHouse_Accounting
     partial void InsertSetting(Setting instance);
     partial void UpdateSetting(Setting instance);
     partial void DeleteSetting(Setting instance);
+    partial void InsertRole(Role instance);
+    partial void UpdateRole(Role instance);
+    partial void DeleteRole(Role instance);
     #endregion
 		
 		public DCAccountancyDataContext() : 
@@ -73,6 +76,14 @@ namespace WareHouse_Accounting
 			}
 		}
 		
+		public System.Data.Linq.Table<Role> Roles
+		{
+			get
+			{
+				return this.GetTable<Role>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.FiLLSettings")]
 		public ISingleResult<Setting> FiLLSettings()
 		{
@@ -99,6 +110,49 @@ namespace WareHouse_Accounting
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), exist);
 			exist = ((System.Nullable<bool>)(result.GetParameterValue(0)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DeleteRoles")]
+		public int DeleteRoles([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Role_Id", DbType="Int")] System.Nullable<int> role_Id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), role_Id);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ExistRoles")]
+		public int ExistRoles([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Exist", DbType="Bit")] ref System.Nullable<bool> exist)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), exist);
+			exist = ((System.Nullable<bool>)(result.GetParameterValue(0)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.FillRolesByRoleID")]
+		public ISingleResult<Role> FillRolesByRoleID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Role_Id", DbType="Int")] System.Nullable<int> role_Id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), role_Id);
+			return ((ISingleResult<Role>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertRoles")]
+		public int InsertRoles([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RoleName", DbType="NVarChar(100)")] string roleName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DepotPermission", DbType="Bit")] System.Nullable<bool> depotPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BankPermission", DbType="Bit")] System.Nullable<bool> bankPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PersonPermission", DbType="Bit")] System.Nullable<bool> personPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FactorPermission", DbType="Bit")] System.Nullable<bool> factorPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SettingPermission", DbType="Bit")] System.Nullable<bool> settingPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserPermission", DbType="Bit")] System.Nullable<bool> userPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LastEditDateTime", DbType="DateTime")] System.Nullable<System.DateTime> lastEditDateTime)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), roleName, depotPermission, bankPermission, personPermission, factorPermission, settingPermission, userPermission, lastEditDateTime);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.FillRoles")]
+		public ISingleResult<Role> FillRoles()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<Role>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateRoles")]
+		public int UpdateRoles([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RolesId", DbType="Int")] System.Nullable<int> rolesId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RoleName", DbType="NVarChar(100)")] string roleName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DepotPermission", DbType="Bit")] System.Nullable<bool> depotPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BankPermission", DbType="Bit")] System.Nullable<bool> bankPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PersonPermission", DbType="Bit")] System.Nullable<bool> personPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FactorPermission", DbType="Bit")] System.Nullable<bool> factorPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SettingPermission", DbType="Bit")] System.Nullable<bool> settingPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserPermission", DbType="Bit")] System.Nullable<bool> userPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LastEditDateTime", DbType="DateTime")] System.Nullable<System.DateTime> lastEditDateTime)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rolesId, roleName, depotPermission, bankPermission, personPermission, factorPermission, settingPermission, userPermission, lastEditDateTime);
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -456,6 +510,260 @@ namespace WareHouse_Accounting
 					this._SendSMSForInvoices = value;
 					this.SendPropertyChanged("SendSMSForInvoices");
 					this.OnSendSMSForInvoicesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastEditDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime LastEditDateTime
+		{
+			get
+			{
+				return this._LastEditDateTime;
+			}
+			set
+			{
+				if ((this._LastEditDateTime != value))
+				{
+					this.OnLastEditDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._LastEditDateTime = value;
+					this.SendPropertyChanged("LastEditDateTime");
+					this.OnLastEditDateTimeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		private void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		private void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Roles")]
+	public sealed partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Role_Id;
+		
+		private string _RoleName;
+		
+		private System.Nullable<bool> _DepotPermission;
+		
+		private System.Nullable<bool> _BankPermission;
+		
+		private System.Nullable<bool> _PersonPermission;
+		
+		private System.Nullable<bool> _FactorPermission;
+		
+		private System.Nullable<bool> _SettingPermission;
+		
+		private System.Nullable<bool> _UserPermission;
+		
+		private System.DateTime _LastEditDateTime;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRole_IdChanging(int value);
+    partial void OnRole_IdChanged();
+    partial void OnRoleNameChanging(string value);
+    partial void OnRoleNameChanged();
+    partial void OnDepotPermissionChanging(System.Nullable<bool> value);
+    partial void OnDepotPermissionChanged();
+    partial void OnBankPermissionChanging(System.Nullable<bool> value);
+    partial void OnBankPermissionChanged();
+    partial void OnPersonPermissionChanging(System.Nullable<bool> value);
+    partial void OnPersonPermissionChanged();
+    partial void OnFactorPermissionChanging(System.Nullable<bool> value);
+    partial void OnFactorPermissionChanged();
+    partial void OnSettingPermissionChanging(System.Nullable<bool> value);
+    partial void OnSettingPermissionChanged();
+    partial void OnUserPermissionChanging(System.Nullable<bool> value);
+    partial void OnUserPermissionChanged();
+    partial void OnLastEditDateTimeChanging(System.DateTime value);
+    partial void OnLastEditDateTimeChanged();
+    #endregion
+		
+		public Role()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Role_Id
+		{
+			get
+			{
+				return this._Role_Id;
+			}
+			set
+			{
+				if ((this._Role_Id != value))
+				{
+					this.OnRole_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Role_Id = value;
+					this.SendPropertyChanged("Role_Id");
+					this.OnRole_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="NVarChar(50)")]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this.OnRoleNameChanging(value);
+					this.SendPropertyChanging();
+					this._RoleName = value;
+					this.SendPropertyChanged("RoleName");
+					this.OnRoleNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DepotPermission", DbType="Bit")]
+		public System.Nullable<bool> DepotPermission
+		{
+			get
+			{
+				return this._DepotPermission;
+			}
+			set
+			{
+				if ((this._DepotPermission != value))
+				{
+					this.OnDepotPermissionChanging(value);
+					this.SendPropertyChanging();
+					this._DepotPermission = value;
+					this.SendPropertyChanged("DepotPermission");
+					this.OnDepotPermissionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BankPermission", DbType="Bit")]
+		public System.Nullable<bool> BankPermission
+		{
+			get
+			{
+				return this._BankPermission;
+			}
+			set
+			{
+				if ((this._BankPermission != value))
+				{
+					this.OnBankPermissionChanging(value);
+					this.SendPropertyChanging();
+					this._BankPermission = value;
+					this.SendPropertyChanged("BankPermission");
+					this.OnBankPermissionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PersonPermission", DbType="Bit")]
+		public System.Nullable<bool> PersonPermission
+		{
+			get
+			{
+				return this._PersonPermission;
+			}
+			set
+			{
+				if ((this._PersonPermission != value))
+				{
+					this.OnPersonPermissionChanging(value);
+					this.SendPropertyChanging();
+					this._PersonPermission = value;
+					this.SendPropertyChanged("PersonPermission");
+					this.OnPersonPermissionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FactorPermission", DbType="Bit")]
+		public System.Nullable<bool> FactorPermission
+		{
+			get
+			{
+				return this._FactorPermission;
+			}
+			set
+			{
+				if ((this._FactorPermission != value))
+				{
+					this.OnFactorPermissionChanging(value);
+					this.SendPropertyChanging();
+					this._FactorPermission = value;
+					this.SendPropertyChanged("FactorPermission");
+					this.OnFactorPermissionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SettingPermission", DbType="Bit")]
+		public System.Nullable<bool> SettingPermission
+		{
+			get
+			{
+				return this._SettingPermission;
+			}
+			set
+			{
+				if ((this._SettingPermission != value))
+				{
+					this.OnSettingPermissionChanging(value);
+					this.SendPropertyChanging();
+					this._SettingPermission = value;
+					this.SendPropertyChanged("SettingPermission");
+					this.OnSettingPermissionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPermission", DbType="Bit")]
+		public System.Nullable<bool> UserPermission
+		{
+			get
+			{
+				return this._UserPermission;
+			}
+			set
+			{
+				if ((this._UserPermission != value))
+				{
+					this.OnUserPermissionChanging(value);
+					this.SendPropertyChanging();
+					this._UserPermission = value;
+					this.SendPropertyChanged("UserPermission");
+					this.OnUserPermissionChanged();
 				}
 			}
 		}

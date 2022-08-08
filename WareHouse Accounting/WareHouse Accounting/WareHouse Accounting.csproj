@@ -56,6 +56,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DCAccountancy.dbml</DependentUpon>
     </Compile>
+    <Compile Include="FrmAddRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddRoles.Designer.cs">
+      <DependentUpon>FrmAddRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSetting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmShowRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmShowRoles.Designer.cs">
+      <DependentUpon>FrmShowRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSplash.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,11 +91,17 @@
     <None Include="DCAccountancy.dbml.layout">
       <DependentUpon>DCAccountancy.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="FrmAddRoles.resx">
+      <DependentUpon>FrmAddRoles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmSetting.resx">
       <DependentUpon>FrmSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmShowRoles.resx">
+      <DependentUpon>FrmShowRoles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSplash.resx">
       <DependentUpon>FrmSplash.cs</DependentUpon>
@@ -99,6 +117,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Role.datasource" />
     <None Include="Properties\DataSources\Setting.datasource" />
     <None Include="Properties\DataSources\WareHouse_Accounting.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">
@@ -128,6 +147,7 @@
   <ItemGroup>
     <Content Include="Applications.ico" />
     <Content Include="Documents.ico" />
+    <None Include="Resources\Key.png" />
     <None Include="Resources\Cancel.png" />
     <None Include="Resources\Edit.png" />
     <None Include="Resources\New.png" />

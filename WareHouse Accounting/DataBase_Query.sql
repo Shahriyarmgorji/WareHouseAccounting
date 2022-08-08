@@ -40,22 +40,24 @@ SendSMSForInvoices						BIT						NULL,
 LastEditDateTime						DateTime				NOT NULL	DEFAULT(GETDATE())
 )
 
-Create Table [Role]
+Create Table Roles
 (
-Role_Id					INT				NOT NULL		IDENTITY(1,1)	PRIMARY KEY	,
+Role_Id					INT					NOT NULL		IDENTITY(1,1)	PRIMARY KEY	,
 RoleName				NVARCHAR(50)		NULL,
 DepotPermission			BIT					NULL,
 BankPermission			BIT					NULL,
 PersonPermission		BIT					NULL,
 FactorPermission		BIT					NULL,
-UserrPermission			BIT					NULL,
-SetingPermission		BIT					NULL,
+SettingPermission		BIT					NULL,
+UserPermission			BIT					NULL,
 LastEditDateTime		DateTime			NOT NULL	DEFAULT(GETDATE())
 )
 GO
 
 --===================================================================================
 -- =================	STORED PROCEDURES	=================
+--==========================		Start PROCEDURE FOR Settings			--==========================
+
 CREATE PROCEDURE InsertSettings
 @CompanyName							NVARCHAR(100),
 @AddressOfInvoices						NVARCHAR(MAX),
@@ -145,3 +147,89 @@ SELECT @Exist = (SELECT COUNT(*) FROM Settings)
 END
 GO
 --==========================		ٍEND PROCEDURE FOR Settings			--==========================
+--==========================		Start PROCEDURE FOR Roles			--==========================
+CREATE PROCEDURE InsertRoles
+@RoleName								NVARCHAR(100),
+@DepotPermission						BIT,
+@BankPermission							BIT,
+@PersonPermission						BIT,
+@FactorPermission						BIT,
+@SettingPermission						BIT,
+@UserPermission							BIT,
+@LastEditDateTime						DateTime
+AS
+BEGIN
+INSERT INTO Roles
+VALUES(
+@RoleName,
+@DepotPermission,
+@BankPermission,
+@PersonPermission,
+@FactorPermission,
+@SettingPermission,
+@UserPermission,
+@LastEditDateTime
+)
+END
+GO
+
+CREATE PROCEDURE UpdateRoles
+@RolesId								INT,
+@RoleName								NVARCHAR(100),
+@DepotPermission						BIT,
+@BankPermission							BIT,
+@PersonPermission						BIT,
+@FactorPermission						BIT,
+@SettingPermission						BIT,
+@UserPermission							BIT,
+@LastEditDateTime						DateTime
+AS
+BEGIN
+Update Roles
+SET
+RoleName								= @RoleName,
+DepotPermission					 		= @DepotPermission,
+BankPermission							= @BankPermission,
+PersonPermission						= @PersonPermission,
+FactorPermission						= @FactorPermission,
+SettingPermission						= @SettingPermission,
+UserPermission							= @UserPermission,
+LastEditDateTime						= @LastEditDateTime
+END
+GO
+
+CREATE PROCEDURE DeleteRoles
+@Role_Id		INT
+AS
+BEGIN
+DELETE  FROM Roles
+WHERE Role_Id = @Role_Id
+END
+GO
+CREATE PROCEDURE FillRolesByRoleID
+@Role_Id		INT
+AS
+BEGIN
+SELECT * FROM Roles Where Role_Id = @Role_Id
+ORDER BY RoleName 
+END
+GO
+
+CREATE PROCEDURE FillRoles
+AS
+BEGIN
+SELECT * FROM Roles
+ORDER BY RoleName 
+END
+GO
+
+
+CREATE PROCEDURE ExistRoles
+@Exist		BIT		OUTPUT
+AS
+BEGIN
+SET @Exist =(SELECT COUNT(*) FROM Roles)
+END
+GO
+
+--==========================		ٍEND PROCEDURE FOR Roles				--==========================
