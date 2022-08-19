@@ -21,7 +21,7 @@ USE WareHouseAccounting
 GO
 --==================================================================
 -- ========================		TABLES		========================
-Create Table Settings
+CREATE TABLE Settings
 (
 Setiing_Id								INT					NOT NULL		IDENTITY(1,1)	PRIMARY KEY	,
 CompanyName								NVARCHAR(100)			NULL,
@@ -40,7 +40,7 @@ SendSMSForInvoices						BIT						NULL,
 LastEditDateTime						DateTime				NOT NULL	DEFAULT(GETDATE())
 )
 
-Create Table Roles
+CREATE TABLE Roles
 (
 Role_Id					INT					NOT NULL		IDENTITY(1,1)	PRIMARY KEY	,
 RoleName				NVARCHAR(50)		NULL,
@@ -53,7 +53,15 @@ UserPermission			BIT					NULL,
 LastEditDateTime		DateTime			NOT NULL	DEFAULT(GETDATE())
 )
 GO
-
+CREATE TABLE Users
+(
+Users_Id					INT					NOT NULL		IDENTITY(1,1)	PRIMARY KEY	,
+Role_Id						INT					NOT NULL						FOREIGN KEY(Role_Id) REFERENCES Roles(Role_Id),
+UserName					VARCHAR(50)			NOT NULL		UNIQUE,
+Password					VARCHAR(50)			NOT NULL,
+LastEditDateTime		DateTime			NOT NULL	DEFAULT(GETDATE())
+)
+GO
 --===================================================================================
 -- =================	STORED PROCEDURES	=================
 --==========================		Start PROCEDURE FOR Settings			--==========================
@@ -202,10 +210,13 @@ CREATE PROCEDURE DeleteRoles
 @Role_Id		INT
 AS
 BEGIN
+DELETE  FROM Users
+WHERE Role_Id = @Role_Id
 DELETE  FROM Roles
 WHERE Role_Id = @Role_Id
 END
 GO
+
 CREATE PROCEDURE FillRolesByRoleID
 @Role_Id		INT
 AS
@@ -233,3 +244,88 @@ END
 GO
 
 --==========================		ٍEND PROCEDURE FOR Roles				--==========================
+--==========================		Start PROCEDURE FOR Users			--==========================
+CREATE PROCEDURE InsertUsers
+@RoleId									INT,
+@UserName								VARCHAR(50),
+@Password								VARCHAR(50),
+@LastEditDateTime						DATETIME
+AS
+BEGIN
+INSERT INTO Users
+VALUES(
+@RoleId,
+@UserName,
+@Password,
+@LastEditDateTime
+)
+END
+GO
+
+CREATE PROCEDURE UpdateUsers
+@UserId									INT,
+@RoleId									INT,
+@UserName								VARCHAR(50),
+@Password								VARCHAR(50),
+@LastEditDateTime						DATETIME
+AS
+BEGIN
+UPDATE Users SET Role_Id = @RoleId
+,UserName = @UserName,Password = Password , LastEditDateTime = @LastEditDateTime
+WHERE Users_Id = @UserId
+END
+GO
+
+CREATE PROCEDURE DeleteUsers
+@UserId									INT
+AS
+BEGIN
+DELETE FROM Users
+WHERE Users_Id = @UserId
+END
+GO
+
+CREATE PROCEDURE FillUsersById
+@UserId									INT
+AS
+BEGIN
+SELECT * FROM Users
+WHERE Users_Id = @UserId
+ORDER BY Role_Id
+END
+GO
+
+CREATE PROCEDURE FillUsers
+AS
+BEGIN
+SELECT * FROM Users
+ORDER BY UserName
+END
+GO
+
+CREATE PROCEDURE CheckUserName
+@Check			BIT				OUTPUT,
+@UserName		VARCHAR(50)
+AS
+BEGIN
+SET @Check =(SELECT COUNT (*) FROM Users WHERE UserName = @UserName)
+END
+GO
+
+CREATE PROCEDURE CheckPassword
+@Check			BIT				OUTPUT,
+@Password		VARCHAR(50)
+AS
+BEGIN
+SET @Check =(SELECT COUNT (*) FROM Users WHERE Password = @Password)
+END
+GO
+
+CREATE PROCEDURE ExistUsers
+@Exist			BIT				OUTPUT
+AS
+BEGIN
+SET @Exist =(SELECT COUNT (*) FROM Users)
+END
+GO
+--==========================		ٍEND PROCEDURE FOR Users				--==========================

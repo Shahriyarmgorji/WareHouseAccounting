@@ -13,8 +13,9 @@ namespace WareHouse_Accounting
     public partial class FrmMain : Form
     {
         DCAccountancyDataContext DcMain = new DCAccountancyDataContext();
-        bool? ExistRole = false;
-
+        bool? lExistRole = false;
+        bool? lExistUser = false;
+        bool? lExistSettings = false;
         public FrmMain()
         {
             InitializeComponent();
@@ -23,12 +24,27 @@ namespace WareHouse_Accounting
         private void FrmMain_Load(object sender, EventArgs e)
         {
             new FrmSplash().ShowDialog();
-            DcMain.ExistRoles(ref ExistRole);
-            if (ExistRole == false)
+            DcMain.ExistRoles(ref lExistRole);
+            if (lExistRole == false)
             {
                 FrmAddRoles.lEdit = false;
                 FrmAddRoles.lExitType = true;
                 new FrmAddRoles().ShowDialog();
+            }
+
+            DcMain.ExistUsers(ref lExistUser);
+            if (lExistUser == false)
+            {
+                FrmAddUser.lExitType = true;
+                FrmAddUser.lIsEdit = false;
+                new FrmAddUser().ShowDialog();
+            }
+
+            DcMain.ExistSettings(ref lExistSettings);
+            if (lExistSettings == false)
+            {
+                FrmSetting.lExitType = true;
+                new FrmSetting().ShowDialog();
             }
         }
 
@@ -40,6 +56,11 @@ namespace WareHouse_Accounting
         private void BtnAddRoles_Click(object sender, EventArgs e)
         {
             new FrmShowRoles().ShowDialog();
+        }
+
+        private void BtnAddUser_Click(object sender, EventArgs e)
+        {
+            new FrmShowUser().ShowDialog();
         }
     }
 }

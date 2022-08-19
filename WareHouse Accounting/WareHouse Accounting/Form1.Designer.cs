@@ -34,11 +34,8 @@
             this.ribbonControl1 = new DevComponents.DotNetBar.RibbonControl();
             this.ribbonPanel2 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar2 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnSetting = new DevComponents.DotNetBar.ButtonItem();
-            this.BtnAddRoles = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanel1 = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBar1 = new DevComponents.DotNetBar.RibbonBar();
-            this.applicationButton1 = new DevComponents.DotNetBar.ApplicationButton();
             this.ribbonTabItem1 = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonSetting = new DevComponents.DotNetBar.RibbonTabItem();
             this.buttonItem1 = new DevComponents.DotNetBar.ButtonItem();
@@ -49,17 +46,24 @@
             this.textBoxX2 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.checkBoxX1 = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.integerInput1 = new DevComponents.Editors.IntegerInput();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.BtnExit = new DevComponents.DotNetBar.ButtonX();
             this.BtnEdit = new DevComponents.DotNetBar.ButtonX();
             this.BtnNew = new DevComponents.DotNetBar.ButtonX();
             this.BtnDelete = new DevComponents.DotNetBar.ButtonX();
             this.BtnSave = new DevComponents.DotNetBar.ButtonX();
+            this.btnSetting = new DevComponents.DotNetBar.ButtonItem();
+            this.BtnAddRoles = new DevComponents.DotNetBar.ButtonItem();
+            this.applicationButton1 = new DevComponents.DotNetBar.ApplicationButton();
             this.BsMainRole = new System.Windows.Forms.BindingSource(this.components);
+            this.BsSettings = new System.Windows.Forms.BindingSource(this.components);
+            this.BtnAddUser = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonControl1.SuspendLayout();
             this.ribbonPanel2.SuspendLayout();
             this.ribbonPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.integerInput1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BsMainRole)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BsSettings)).BeginInit();
             this.SuspendLayout();
             // 
             // styleManager1
@@ -76,8 +80,8 @@
             this.ribbonControl1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonControl1.CanCustomize = false;
             this.ribbonControl1.CaptionVisible = true;
-            this.ribbonControl1.Controls.Add(this.ribbonPanel2);
             this.ribbonControl1.Controls.Add(this.ribbonPanel1);
+            this.ribbonControl1.Controls.Add(this.ribbonPanel2);
             this.ribbonControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.ribbonControl1.ForeColor = System.Drawing.Color.Black;
             this.ribbonControl1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -131,6 +135,7 @@
             // 
             this.ribbonPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel2.TabIndex = 2;
+            this.ribbonPanel2.Visible = false;
             // 
             // ribbonBar2
             // 
@@ -150,7 +155,7 @@
             this.BtnAddRoles});
             this.ribbonBar2.Location = new System.Drawing.Point(3, 3);
             this.ribbonBar2.Name = "ribbonBar2";
-            this.ribbonBar2.Size = new System.Drawing.Size(127, 90);
+            this.ribbonBar2.Size = new System.Drawing.Size(120, 90);
             this.ribbonBar2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar2.TabIndex = 0;
             this.ribbonBar2.Text = "Application";
@@ -163,35 +168,15 @@
             // 
             this.ribbonBar2.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btnSetting
-            // 
-            this.btnSetting.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSetting.Image = global::WareHouse_Accounting.Properties.Resources.Applications1;
-            this.btnSetting.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.SubItemsExpandWidth = 14;
-            this.btnSetting.Text = "Applications";
-            this.btnSetting.Tooltip = "Add Settings";
-            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
-            // 
-            // BtnAddRoles
-            // 
-            this.BtnAddRoles.Image = global::WareHouse_Accounting.Properties.Resources.Key;
-            this.BtnAddRoles.Name = "BtnAddRoles";
-            this.BtnAddRoles.SubItemsExpandWidth = 14;
-            this.BtnAddRoles.Text = "AddRoles";
-            this.BtnAddRoles.Tooltip = "Add Roles";
-            this.BtnAddRoles.Click += new System.EventHandler(this.BtnAddRoles_Click);
-            // 
             // ribbonPanel1
             // 
             this.ribbonPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonPanel1.Controls.Add(this.ribbonBar1);
             this.ribbonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanel1.Location = new System.Drawing.Point(0, 0);
+            this.ribbonPanel1.Location = new System.Drawing.Point(0, 56);
             this.ribbonPanel1.Name = "ribbonPanel1";
             this.ribbonPanel1.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
-            this.ribbonPanel1.Size = new System.Drawing.Size(882, 154);
+            this.ribbonPanel1.Size = new System.Drawing.Size(882, 98);
             // 
             // 
             // 
@@ -205,7 +190,6 @@
             // 
             this.ribbonPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanel1.TabIndex = 1;
-            this.ribbonPanel1.Visible = false;
             // 
             // ribbonBar1
             // 
@@ -221,12 +205,14 @@
             this.ribbonBar1.ContainerControlProcessDialogKey = true;
             this.ribbonBar1.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBar1.DragDropSupport = true;
+            this.ribbonBar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.BtnAddUser});
             this.ribbonBar1.Location = new System.Drawing.Point(3, 0);
             this.ribbonBar1.Name = "ribbonBar1";
-            this.ribbonBar1.Size = new System.Drawing.Size(100, 152);
+            this.ribbonBar1.Size = new System.Drawing.Size(63, 96);
             this.ribbonBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar1.TabIndex = 0;
-            this.ribbonBar1.Text = "ribbonBar1";
+            this.ribbonBar1.Text = "User";
             // 
             // 
             // 
@@ -236,28 +222,15 @@
             // 
             this.ribbonBar1.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // applicationButton1
-            // 
-            this.applicationButton1.AutoExpandOnClick = true;
-            this.applicationButton1.CanCustomize = false;
-            this.applicationButton1.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.Image;
-            this.applicationButton1.Image = ((System.Drawing.Image)(resources.GetObject("applicationButton1.Image")));
-            this.applicationButton1.ImageFixedSize = new System.Drawing.Size(16, 16);
-            this.applicationButton1.ImagePaddingHorizontal = 0;
-            this.applicationButton1.ImagePaddingVertical = 1;
-            this.applicationButton1.Name = "applicationButton1";
-            this.applicationButton1.ShowSubItems = false;
-            this.applicationButton1.Text = "&File";
-            // 
             // ribbonTabItem1
             // 
+            this.ribbonTabItem1.Checked = true;
             this.ribbonTabItem1.Name = "ribbonTabItem1";
             this.ribbonTabItem1.Panel = this.ribbonPanel1;
-            this.ribbonTabItem1.Text = "ribbonTabItem1";
+            this.ribbonTabItem1.Text = "Intro";
             // 
             // ribbonSetting
             // 
-            this.ribbonSetting.Checked = true;
             this.ribbonSetting.Name = "ribbonSetting";
             this.ribbonSetting.Panel = this.ribbonPanel2;
             this.ribbonSetting.Text = "Setting";
@@ -378,6 +351,16 @@
             this.integerInput1.Size = new System.Drawing.Size(199, 26);
             this.integerInput1.TabIndex = 0;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.Color.LightGray;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(484, 291);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(173, 26);
+            this.comboBox1.TabIndex = 11;
+            // 
             // BtnExit
             // 
             this.BtnExit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -458,9 +441,55 @@
             this.BtnSave.TabIndex = 0;
             this.BtnSave.Text = "Save";
             // 
+            // btnSetting
+            // 
+            this.btnSetting.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSetting.Image = global::WareHouse_Accounting.Properties.Resources.Applications1;
+            this.btnSetting.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.SubItemsExpandWidth = 14;
+            this.btnSetting.Text = "Applications";
+            this.btnSetting.Tooltip = "Add Settings";
+            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
+            // 
+            // BtnAddRoles
+            // 
+            this.BtnAddRoles.Image = global::WareHouse_Accounting.Properties.Resources.Key;
+            this.BtnAddRoles.Name = "BtnAddRoles";
+            this.BtnAddRoles.SubItemsExpandWidth = 14;
+            this.BtnAddRoles.Text = "AddRoles";
+            this.BtnAddRoles.Tooltip = "Add Roles";
+            this.BtnAddRoles.Click += new System.EventHandler(this.BtnAddRoles_Click);
+            // 
+            // applicationButton1
+            // 
+            this.applicationButton1.AutoExpandOnClick = true;
+            this.applicationButton1.CanCustomize = false;
+            this.applicationButton1.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.Image;
+            this.applicationButton1.Image = ((System.Drawing.Image)(resources.GetObject("applicationButton1.Image")));
+            this.applicationButton1.ImageFixedSize = new System.Drawing.Size(16, 16);
+            this.applicationButton1.ImagePaddingHorizontal = 0;
+            this.applicationButton1.ImagePaddingVertical = 1;
+            this.applicationButton1.Name = "applicationButton1";
+            this.applicationButton1.ShowSubItems = false;
+            this.applicationButton1.Text = "&File";
+            // 
             // BsMainRole
             // 
             this.BsMainRole.DataSource = typeof(WareHouse_Accounting.Role);
+            // 
+            // BsSettings
+            // 
+            this.BsSettings.DataSource = typeof(WareHouse_Accounting.Setting);
+            // 
+            // BtnAddUser
+            // 
+            this.BtnAddUser.Image = global::WareHouse_Accounting.Properties.Resources.Adim;
+            this.BtnAddUser.Name = "BtnAddUser";
+            this.BtnAddUser.SubItemsExpandWidth = 14;
+            this.BtnAddUser.Text = "Add User";
+            this.BtnAddUser.Tooltip = "Add User";
+            this.BtnAddUser.Click += new System.EventHandler(this.BtnAddUser_Click);
             // 
             // FrmMain
             // 
@@ -468,6 +497,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(882, 494);
             this.ControlBox = false;
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.integerInput1);
             this.Controls.Add(this.checkBoxX1);
             this.Controls.Add(this.textBoxX2);
@@ -496,6 +526,7 @@
             this.ribbonPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.integerInput1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BsMainRole)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BsSettings)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -526,6 +557,9 @@
         private DevComponents.Editors.IntegerInput integerInput1;
         private DevComponents.DotNetBar.ButtonItem BtnAddRoles;
         private System.Windows.Forms.BindingSource BsMainRole;
+        private System.Windows.Forms.BindingSource BsSettings;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private DevComponents.DotNetBar.ButtonItem BtnAddUser;
     }
 }
 

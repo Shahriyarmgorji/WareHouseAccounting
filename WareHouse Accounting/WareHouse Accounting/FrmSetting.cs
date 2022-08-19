@@ -8,6 +8,7 @@ namespace WareHouse_Accounting
         DCAccountancyDataContext myData = new DCAccountancyDataContext();
         bool? ExistSettings = false;
         DateTime datetime = DateTime.Now;
+        public static bool lExitType = false;
         public FrmSetting()
         {
             InitializeComponent();
@@ -48,6 +49,7 @@ namespace WareHouse_Accounting
                             TxtPanelPassword.Text, TxtPanelUsername.Text, TxtRecipientNumber.Text, TxtRemittanceContactNumber.Text,
                             TxtSender.Text, TxtWarehouseRemittanceAddress.Text, integerInput1.Value, integerInput2.Value,
                             checkSMSForTransactions.Checked, checkSmsInvoices.Checked, datetime);
+                        lExitType = false;
                     }
                     MessageBox.Show("Registration information completed successfully", "successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -73,6 +75,14 @@ namespace WareHouse_Accounting
                 MessageBox.Show("The connection with the server has been lost!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void FrmSetting_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (lExitType)
+            {
+                Application.Exit();
+            }
         }
     }
 }

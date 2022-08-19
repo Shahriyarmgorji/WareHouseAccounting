@@ -659,6 +659,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmSetting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmSetting_FormClosed);
             this.Load += new System.EventHandler(this.FrmSetting_Load);
             this.panelEx1.ResumeLayout(false);
             this.groupPanel2.ResumeLayout(false);

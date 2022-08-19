@@ -62,6 +62,12 @@
     <Compile Include="FrmAddRoles.Designer.cs">
       <DependentUpon>FrmAddRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmAddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddUser.Designer.cs">
+      <DependentUpon>FrmAddUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSetting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,12 @@
     <Compile Include="FrmShowRoles.Designer.cs">
       <DependentUpon>FrmShowRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmShowUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmShowUser.Designer.cs">
+      <DependentUpon>FrmShowUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSplash.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +106,9 @@
     <EmbeddedResource Include="FrmAddRoles.resx">
       <DependentUpon>FrmAddRoles.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmAddUser.resx">
+      <DependentUpon>FrmAddUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmSetting.resx">
       <DependentUpon>FrmSetting.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmShowRoles.resx">
       <DependentUpon>FrmShowRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmShowUser.resx">
+      <DependentUpon>FrmShowUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSplash.resx">
       <DependentUpon>FrmSplash.cs</DependentUpon>
@@ -119,6 +137,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Role.datasource" />
     <None Include="Properties\DataSources\Setting.datasource" />
+    <None Include="Properties\DataSources\User.datasource" />
     <None Include="Properties\DataSources\WareHouse_Accounting.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -147,6 +166,7 @@
   <ItemGroup>
     <Content Include="Applications.ico" />
     <Content Include="Documents.ico" />
+    <None Include="Resources\Adim.png" />
     <None Include="Resources\Key.png" />
     <None Include="Resources\Cancel.png" />
     <None Include="Resources\Edit.png" />

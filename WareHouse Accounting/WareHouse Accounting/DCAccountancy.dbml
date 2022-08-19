@@ -30,6 +30,17 @@
       <Column Name="SettingPermission" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="UserPermission" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="LastEditDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Role_User" Member="Users" ThisKey="Role_Id" OtherKey="Role_Id" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User" Id="ID3" Modifier="Sealed">
+      <Column Name="Users_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Role_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastEditDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Role_User" Member="Role" ThisKey="Role_Id" OtherKey="Role_Id" Type="Role" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.FiLLSettings" Method="FiLLSettings">
@@ -109,6 +120,50 @@
     <Parameter Name="SettingPermission" Parameter="settingPermission" Type="System.Boolean" DbType="Bit" />
     <Parameter Name="UserPermission" Parameter="userPermission" Type="System.Boolean" DbType="Bit" />
     <Parameter Name="LastEditDateTime" Parameter="lastEditDateTime" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ExistUsers" Method="ExistUsers">
+    <Parameter Name="Exist" Parameter="exist" Type="System.Boolean" DbType="Bit" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CheckPassword" Method="CheckPassword">
+    <Parameter Name="Check" Parameter="check" Type="System.Boolean" DbType="Bit" Direction="InOut" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteUsers" Method="DeleteUsers">
+    <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ExistUsers" Method="ExistUsers1">
+    <Parameter Name="Exist" Parameter="exist" Type="System.Boolean" DbType="Bit" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.FillUsers" Method="FillUsers">
+    <ElementType IdRef="ID3" />
+  </Function>
+  <Function Name="dbo.FillUsersById" Method="FillUsersById">
+    <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
+    <ElementType IdRef="ID3" />
+  </Function>
+  <Function Name="dbo.InsertUsers" Method="InsertUsers">
+    <Parameter Name="RoleId" Parameter="roleId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="LastEditDateTime" Parameter="lastEditDateTime" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UpdateUsers" Method="UpdateUsers">
+    <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="RoleId" Parameter="roleId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="LastEditDateTime" Parameter="lastEditDateTime" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CheckUserName" Method="CheckUserName">
+    <Parameter Name="Check" Parameter="check" Type="System.Boolean" DbType="Bit" Direction="InOut" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="VarChar(50)" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

@@ -36,6 +36,9 @@ namespace WareHouse_Accounting
     partial void InsertRole(Role instance);
     partial void UpdateRole(Role instance);
     partial void DeleteRole(Role instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
     #endregion
 		
 		public DCAccountancyDataContext() : 
@@ -81,6 +84,14 @@ namespace WareHouse_Accounting
 			get
 			{
 				return this.GetTable<Role>();
+			}
+		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
 			}
 		}
 		
@@ -153,6 +164,73 @@ namespace WareHouse_Accounting
 		public int UpdateRoles([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RolesId", DbType="Int")] System.Nullable<int> rolesId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RoleName", DbType="NVarChar(100)")] string roleName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DepotPermission", DbType="Bit")] System.Nullable<bool> depotPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BankPermission", DbType="Bit")] System.Nullable<bool> bankPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PersonPermission", DbType="Bit")] System.Nullable<bool> personPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FactorPermission", DbType="Bit")] System.Nullable<bool> factorPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SettingPermission", DbType="Bit")] System.Nullable<bool> settingPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserPermission", DbType="Bit")] System.Nullable<bool> userPermission, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LastEditDateTime", DbType="DateTime")] System.Nullable<System.DateTime> lastEditDateTime)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rolesId, roleName, depotPermission, bankPermission, personPermission, factorPermission, settingPermission, userPermission, lastEditDateTime);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ExistUsers")]
+		public int ExistUsers([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Exist", DbType="Bit")] ref System.Nullable<bool> exist)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), exist);
+			exist = ((System.Nullable<bool>)(result.GetParameterValue(0)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CheckPassword")]
+		public int CheckPassword([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Check", DbType="Bit")] ref System.Nullable<bool> check, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="VarChar(50)")] string password)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), check, password);
+			check = ((System.Nullable<bool>)(result.GetParameterValue(0)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DeleteUsers")]
+		public int DeleteUsers([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="Int")] System.Nullable<int> userId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ExistUsers")]
+		public int ExistUsers1([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Exist", DbType="Bit")] ref System.Nullable<bool> exist)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), exist);
+			exist = ((System.Nullable<bool>)(result.GetParameterValue(0)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.FillUsers")]
+		public ISingleResult<User> FillUsers()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<User>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.FillUsersById")]
+		public ISingleResult<User> FillUsersById([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="Int")] System.Nullable<int> userId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId);
+			return ((ISingleResult<User>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertUsers")]
+		public int InsertUsers([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RoleId", DbType="Int")] System.Nullable<int> roleId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="VarChar(50)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="VarChar(50)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LastEditDateTime", DbType="DateTime")] System.Nullable<System.DateTime> lastEditDateTime)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), roleId, userName, password, lastEditDateTime);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateUsers")]
+		public int UpdateUsers([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="Int")] System.Nullable<int> userId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RoleId", DbType="Int")] System.Nullable<int> roleId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="VarChar(50)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="VarChar(50)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LastEditDateTime", DbType="DateTime")] System.Nullable<System.DateTime> lastEditDateTime)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, roleId, userName, password, lastEditDateTime);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CheckUserName")]
+		public int CheckUserName([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Check", DbType="Bit")] ref System.Nullable<bool> check, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="VarChar(50)")] string userName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), check, userName);
+			check = ((System.Nullable<bool>)(result.GetParameterValue(0)));
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -579,6 +657,8 @@ namespace WareHouse_Accounting
 		
 		private System.DateTime _LastEditDateTime;
 		
+		private EntitySet<User> _Users;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -605,6 +685,7 @@ namespace WareHouse_Accounting
 		
 		public Role()
 		{
+			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
 			OnCreated();
 		}
 		
@@ -784,6 +865,230 @@ namespace WareHouse_Accounting
 					this._LastEditDateTime = value;
 					this.SendPropertyChanged("LastEditDateTime");
 					this.OnLastEditDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_User", Storage="_Users", ThisKey="Role_Id", OtherKey="Role_Id")]
+		public EntitySet<User> Users
+		{
+			get
+			{
+				return this._Users;
+			}
+			set
+			{
+				this._Users.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		private void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		private void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Users(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.Role = this;
+		}
+		
+		private void detach_Users(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.Role = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public sealed partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Users_Id;
+		
+		private int _Role_Id;
+		
+		private string _UserName;
+		
+		private string _Password;
+		
+		private System.DateTime _LastEditDateTime;
+		
+		private EntityRef<Role> _Role;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUsers_IdChanging(int value);
+    partial void OnUsers_IdChanged();
+    partial void OnRole_IdChanging(int value);
+    partial void OnRole_IdChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnLastEditDateTimeChanging(System.DateTime value);
+    partial void OnLastEditDateTimeChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Role = default(EntityRef<Role>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Users_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Users_Id
+		{
+			get
+			{
+				return this._Users_Id;
+			}
+			set
+			{
+				if ((this._Users_Id != value))
+				{
+					this.OnUsers_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Users_Id = value;
+					this.SendPropertyChanged("Users_Id");
+					this.OnUsers_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role_Id", DbType="Int NOT NULL")]
+		public int Role_Id
+		{
+			get
+			{
+				return this._Role_Id;
+			}
+			set
+			{
+				if ((this._Role_Id != value))
+				{
+					if (this._Role.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRole_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Role_Id = value;
+					this.SendPropertyChanged("Role_Id");
+					this.OnRole_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastEditDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime LastEditDateTime
+		{
+			get
+			{
+				return this._LastEditDateTime;
+			}
+			set
+			{
+				if ((this._LastEditDateTime != value))
+				{
+					this.OnLastEditDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._LastEditDateTime = value;
+					this.SendPropertyChanged("LastEditDateTime");
+					this.OnLastEditDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_User", Storage="_Role", ThisKey="Role_Id", OtherKey="Role_Id", IsForeignKey=true)]
+		public Role Role
+		{
+			get
+			{
+				return this._Role.Entity;
+			}
+			set
+			{
+				Role previousValue = this._Role.Entity;
+				if (((previousValue != value) 
+							|| (this._Role.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Role.Entity = null;
+						previousValue.Users.Remove(this);
+					}
+					this._Role.Entity = value;
+					if ((value != null))
+					{
+						value.Users.Add(this);
+						this._Role_Id = value.Role_Id;
+					}
+					else
+					{
+						this._Role_Id = default(int);
+					}
+					this.SendPropertyChanged("Role");
 				}
 			}
 		}
