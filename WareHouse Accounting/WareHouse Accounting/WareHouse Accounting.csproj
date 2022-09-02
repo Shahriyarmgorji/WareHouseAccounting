@@ -68,6 +68,18 @@
     <Compile Include="FrmAddUser.Designer.cs">
       <DependentUpon>FrmAddUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmLogIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogIn.Designer.cs">
+      <DependentUpon>FrmLogIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogInSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogInSettings.Designer.cs">
+      <DependentUpon>FrmLogInSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSetting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +120,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddUser.resx">
       <DependentUpon>FrmAddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogIn.resx">
+      <DependentUpon>FrmLogIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogInSettings.resx">
+      <DependentUpon>FrmLogInSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSetting.resx">
       <DependentUpon>FrmSetting.cs</DependentUpon>
@@ -166,6 +184,14 @@
   <ItemGroup>
     <Content Include="Applications.ico" />
     <Content Include="Documents.ico" />
+    <None Include="Resources\Options1.png" />
+    <None Include="Resources\Options.png" />
+    <None Include="Resources\Apply1.png" />
+    <None Include="Resources\Apply.png" />
+    <None Include="Resources\Password Small.png" />
+    <None Include="Resources\Lock1.png" />
+    <None Include="Resources\Lock.png" />
+    <None Include="Resources\Password.png" />
     <None Include="Resources\Adim.png" />
     <None Include="Resources\Key.png" />
     <None Include="Resources\Cancel.png" />

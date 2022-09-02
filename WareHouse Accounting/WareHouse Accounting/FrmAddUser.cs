@@ -39,6 +39,11 @@ namespace WareHouse_Accounting
                 {
                     CBAddRole.SelectedValue = nRoleId;
                     BsAddUser.DataSource = Dc.FillUsersById(nUserId);
+                    TxtUserName.ReadOnly = true;
+                }
+                else
+                {
+                    TxtUserName.ReadOnly = false;
                 }
             }
             catch
@@ -69,7 +74,7 @@ namespace WareHouse_Accounting
                 {
                     EPAddUser.Clear();
                     lExecution = false;
-                    EPAddUser.SetError(TxtUserName,"Enter UserName");
+                    EPAddUser.SetError(TxtUserName, "Enter UserName");
                     TxtUserName.Focus();
 
                 }
@@ -91,7 +96,7 @@ namespace WareHouse_Accounting
                     }
                     else
                     {
-                        Dc.CheckUserName(ref lCheckUserName,TxtUserName.Text);
+                        Dc.CheckUserName(ref lCheckUserName, TxtUserName.Text);
 
                         if (lCheckUserName == true)
                         {
@@ -107,7 +112,7 @@ namespace WareHouse_Accounting
                             TxtUserName.Focus();
                             lExitType = false;
                         }
-                 
+
                     }
                     MessageBox.Show("Add User completed successfully", "successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

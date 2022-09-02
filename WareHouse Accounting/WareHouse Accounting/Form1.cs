@@ -62,5 +62,10 @@ namespace WareHouse_Accounting
         {
             new FrmShowUser().ShowDialog();
         }
+
+        private void BtnUserSetting_Click(object sender, EventArgs e)
+        {
+            new FrmLogInSettings().ShowDialog();
+        }
     }
 }
